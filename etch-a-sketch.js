@@ -6,24 +6,28 @@ const sizeButton = document.querySelector("#size");
 const headerSize = document.querySelector("h1");
 
 sizeButton.addEventListener("click", () => {
-    size = parseInt(prompt("Please enter new size of grid (between 1-100)"));
-    if (size >= 1 && size <= 100) {
-        // console.log(typeof size);
+    size = prompt("Please enter new size of grid (between 1-100)");
+    if (parseInt(size) >= 1 && parseInt(size) <= 100) {
+        console.log(typeof size);
         removeAndGenerate();
     }
     else {
-        while (size < 0 || size > 100 || size === null || isNaN(size)) {
-            if (size > 100) {
-                size = parseInt(prompt("Number too big, please enter a smaller one (between 1-100)"));
+        while (isNaN(parseInt(size)) || parseInt(size) < 1 || parseInt(size) > 100 || size === null) {
+            console.log(size);
+            console.log(typeof size);
+            if (parseInt(size) > 100) {
+                size = prompt("Number too big, please enter a smaller one (between 1-100)");
             }
-            else if (size < 0) {
-                size = parseInt(prompt("Number below zero, please enter a positive one (between 1-100)"));
+            else if (parseInt(size) < 0) {
+                size = prompt("Number below zero, please enter a positive one (between 1-100)");
             }
-            else if (typeof size === 'string' && isNaN(size) || (size === null || isNaN(size))) {
-                size = parseInt(prompt("Invalid input, please enter a number between 1-100"));
+            else if (size === null) {
+                console.log("cancel");
+                return;
             }
-            // console.log(size);
-            // console.log(typeof size);
+            else if (isNaN(parseInt(size))) {
+                size = prompt("Invalid input, please enter a number between 1-100");
+            }
         }
         removeAndGenerate();
     }
@@ -51,7 +55,7 @@ function generateGrid() {
             // Allows user to hold mousedown to draw when hovering
             // over canvas
             gridContainer.addEventListener("mousedown", (e) => {
-                e.preventDefault();
+                e.preventDefault(); // To prevent dragging of div
 
                 div.onmousemove = function() {
                     if (!(div.classList.contains("colorBox"))) {

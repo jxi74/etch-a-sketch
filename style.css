@@ -36,3 +36,11 @@ body {
 .colorBox {
     background-color: red;
 }
+
+.colorGreen {
+    background-color: green;
+}
+
+.colorYellow {
+    background-color: yellow;
+}
