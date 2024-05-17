@@ -1,6 +1,7 @@
 let size = 16;
 
 const gridContainer = document.querySelector("#grid-container");
+const body = document.querySelector("body");
 const sizeButton = document.querySelector("#size");
 const headerSize = document.querySelector("h1");
 
@@ -46,9 +47,28 @@ function generateGrid() {
         for (let j = 0; j < size; j++) {
             const div = document.createElement("div");
             div.classList.add("box");
-            div.addEventListener("mousemove", (e) => {
-                div.classList.add("colorBox");
+
+            // Allows user to hold mousedown to draw when hovering
+            // over canvas
+            gridContainer.addEventListener("mousedown", (e) => {
+                e.preventDefault();
+
+                div.onmousemove = function() {
+                    if (!(div.classList.contains("colorBox"))) {
+                        div.classList.add("colorBox");
+                        console.log("colored")
+                    }
+                }
             });
+
+            gridContainer.addEventListener("mouseup", () => {
+                div.onmousemove = null;
+            });
+            body.addEventListener("mouseup", () => {
+                div.onmousemove = null;
+            });
+
+
             row.appendChild(div);
         }
         gridContainer.appendChild(row);
