@@ -20,6 +20,7 @@ body {
     padding: 20px;
     width: 384px;
     height: 384px;
+    margin-right: 40px;
 }
 
 .row {
@@ -33,7 +34,70 @@ body {
     flex-grow: 1;
 }
 
-.colorBox {
+.tools {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.shadow {
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#black-block {
+    height: 40px;
+    width: 40px;
+    background-color: black;
+    cursor: pointer;
+}
+
+#red-block {
+    height: 40px;
+    width: 40px;
+    background-color: red;
+    cursor: pointer;
+}
+
+#green-block {
+    height: 40px;
+    width: 40px;
+    background-color: green;
+    cursor: pointer;
+
+}
+
+#yellow-block {
+    height: 40px;
+    width: 40px;
+    background-color: yellow;
+    cursor: pointer;
+}
+
+#eraser img {
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+
+#reset img {
+    height: 35px;
+    width: 40px;
+    cursor: pointer;
+}
+
+.hov:hover {
+    -webkit-filter: brightness(70%);
+	-moz-filter: brightness(70%);
+	-o-filter: brightness(70%);
+	-ms-filter: brightness(70%);
+	filter: brightness(70%);
+}
+
+.colorBlack {
+    background-color: black;
+}
+
+.colorRed {
     background-color: red;
 }
 
@@ -43,4 +107,8 @@ body {
 
 .colorYellow {
     background-color: yellow;
+}
+
+.colorBlue {
+    background-color: blue;
 }
