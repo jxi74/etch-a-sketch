@@ -1,6 +1,7 @@
 let size = 16;
 let tool = "red";
 let lastSelected = "colorRed";
+let lastSize = 16;
 
 const gridContainer = document.querySelector("#grid-container");
 const body = document.querySelector("body");
@@ -9,27 +10,35 @@ const headerSize = document.querySelector("h1");
 
 sizeButton.addEventListener("click", () => {
     size = prompt("Please enter new size of grid (between 1-100)");
-    if (parseInt(size) >= 1 && parseInt(size) <= 100) {
-        //console.log(typeof size);
+    if (Number(size) >= 1 && Number(size) <= 100) {
+        console.log(size);
+        console.log(typeof size);
+        lastSize = size;
         removeAndGenerate();
     }
     else {
-        while (isNaN(parseInt(size)) || parseInt(size) < 1 || parseInt(size) > 100 || size === null) {
-            //console.log(size);
-            //console.log(typeof size);
-            if (parseInt(size) > 100) {
+        while (isNaN(Number(size)) || Number(size) < 1 || Number(size) > 100) {
+            console.log(size);
+            console.log(typeof size);
+            if (Number(size) > 100) {
                 size = prompt("Number too big, please enter a smaller one (between 1-100)");
             }
-            else if (parseInt(size) < 0) {
-                size = prompt("Number below zero, please enter a positive one (between 1-100)");
-            }
             else if (size === null) {
-                //console.log("cancel");
+                console.log("cancel");
+                size = lastSize;
+                console.log("size = lastSelected")
                 return;
             }
-            else if (isNaN(parseInt(size))) {
+            else if (Number(size) < 1) {
+                size = prompt("Number is zero or below, please enter a positive one (between 1-100)");
+            }
+            else if (isNaN(Number(size))) {
                 size = prompt("Invalid input, please enter a number between 1-100");
             }
+        }
+        if (size !== null) {
+            //console.log("lastSize = size");
+            lastSize = size;
         }
         removeAndGenerate();
     }
