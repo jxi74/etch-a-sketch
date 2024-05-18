@@ -11,22 +11,22 @@ const headerSize = document.querySelector("h1");
 sizeButton.addEventListener("click", () => {
     size = prompt("Please enter new size of grid (between 1-100)");
     if (Number(size) >= 1 && Number(size) <= 100) {
-        console.log(size);
-        console.log(typeof size);
+        // console.log(size);
+        // console.log(typeof size);
         lastSize = size;
         removeAndGenerate();
     }
     else {
         while (isNaN(Number(size)) || Number(size) < 1 || Number(size) > 100) {
-            console.log(size);
-            console.log(typeof size);
+            // console.log(size);
+            // console.log(typeof size);
             if (Number(size) > 100) {
                 size = prompt("Number too big, please enter a smaller one (between 1-100)");
             }
             else if (size === null) {
-                console.log("cancel");
+                // console.log("cancel");
                 size = lastSize;
-                console.log("size = lastSelected")
+                // console.log("size = lastSelected")
                 return;
             }
             else if (Number(size) < 1) {
